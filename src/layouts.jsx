@@ -5,7 +5,7 @@ import Footer from './components/Footer'
 
 export default function layouts() {
   return (
-    <div>
+    <div >
         <Header/>
         <Outlet/>
         <Footer/>

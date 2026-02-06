@@ -1,18 +1,25 @@
 import React from 'react'
 import Button from './Button'
+import Icon from './Icon'
+import { ShoppingCartIcon } from 'lucide-react'
 
 export default function Header() {
   return (
-   <header className='w-full h-auto py-5  px-4 lg:px-28'>
+   <header className='w-full bg-gray-950 text-white flex justify-between items-center h-auto py-5  px-4 lg:px-28'>
     <div className=''>
-        <h1>jedo</h1>
+        <h1 className='text-4xl font-bold'>jedo</h1>
     </div>
     {/*desktop  */}
     <nav className='flex'>
-
+      <ul className='flex gap-6'>
+        <li><a href="#">Home</a></li>
+        <li><a href="/products">Products</a></li>
+        <li><a href="/customer">Customer service</a></li>
+              <li><a href="/dashboard">Dashboard</a></li>
+      </ul>
     </nav>
-    <div className='flex'>
-        
+    <div className='flex gap-5'>
+        <Icon Icon={ShoppingCartIcon} size={24}/>
        <Button to='/login' name="login"/>
        <Button to="/signup" name="signup"/>
     </div>
