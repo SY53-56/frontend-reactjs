@@ -3,7 +3,8 @@ import Input from '../components/Input'
 import Button from '../components/Button'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { authSign } from '../features/authSlice'
+
+import { signupThunk } from '../features/authThunk'
 export default function Signup() {
   const {user} = useSelector((state)=>state.auth)
   const dispatch = useDispatch()
@@ -22,7 +23,7 @@ export default function Signup() {
   const handleForm= async(e)=>{
   e.preventDefault()
    try{
-    await  dispatch(authSign( form ))
+    await  dispatch(signupThunk(form))
       navigate("/")
    }catch(e){
     alert(e)

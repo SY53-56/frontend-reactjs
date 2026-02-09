@@ -4,7 +4,7 @@ import Icon from './Icon'
 import { ShoppingCartIcon } from 'lucide-react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
-import { authLogout } from '../features/authSlice'
+import { logout } from '../features/authSlice'
 
 export default function Header() {
   const {user , users}= useSelector((state)=>state.auth)
@@ -13,7 +13,7 @@ export default function Header() {
 
 
   const handleLogout= async()=>{
-       await dispatch(authLogout())
+       await dispatch(logout())
        navigate("/")
   }
 console.log(user)
@@ -35,13 +35,14 @@ console.log(users)
     <div className='flex gap-5'>
         <Icon Icon={ShoppingCartIcon} size={24}/>
      {user ?(
-      <div>
-           <Button to='/login' name="login"/>
-       <Button to="/signup" name="signup"/>
+      <div className='flex gap-4'>
+          <p>{user.username}</p>
+          <Button onClick={handleLogout} className="px-3 py-1 rounded-md bg-amber-500 text-white hover:bg-amber-600 transition-all duration-300" name="logout"/>
       </div>
-     ): <div>
-      
-        <Button onClick={handleLogout} className="px-3 py-1 rounded-md bg-amber-500 text-white hover:bg-amber-600 transition-all duration-300" name="logout"/>
+     ): <div className='flex gap-4'>
+        <Button to='/login' className=" px-3.5 py-1 rounded-md  transition-all duration-300 bg-emerald-400 hover:bg-amber-600" name="login"/>
+       <Button to="/signup"  className=" px-3.5 py-1 rounded-md  transition-all duration-300 bg-fuchsia-600 hover:bg-fuchsia-700" name="signup"/>
+       
       </div>}
     </div>
    </header>
