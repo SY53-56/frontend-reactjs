@@ -2,8 +2,22 @@ import React from 'react'
 import Button from './Button'
 import Icon from './Icon'
 import { ShoppingCartIcon } from 'lucide-react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router'
+import { authLogout } from '../features/authSlice'
 
 export default function Header() {
+  const {user , users}= useSelector((state)=>state.auth)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+
+  const handleLogout= async()=>{
+       await dispatch(authLogout())
+       navigate("/")
+  }
+console.log(user)
+console.log(users)
   return (
    <header className='w-full bg-gray-950 text-white flex justify-between items-center h-auto py-5  px-4 lg:px-28'>
     <div className=''>
@@ -20,8 +34,15 @@ export default function Header() {
     </nav>
     <div className='flex gap-5'>
         <Icon Icon={ShoppingCartIcon} size={24}/>
-       <Button to='/login' name="login"/>
+     {user ?(
+      <div>
+           <Button to='/login' name="login"/>
        <Button to="/signup" name="signup"/>
+      </div>
+     ): <div>
+      
+        <Button onClick={handleLogout} className="px-3 py-1 rounded-md bg-amber-500 text-white hover:bg-amber-600 transition-all duration-300" name="logout"/>
+      </div>}
     </div>
    </header>
   )

@@ -15,13 +15,13 @@ function App() {
 
   return (
     <>
-     <Routes>
-     <Route element={<Layouts/>}>
+    <Routes>
+      <Route element={<Layouts/>}>
       <Route path='/' element={<Home/>}/>
       <Route path={`/product`}  element={<Products/>}/>
       <Route path={`/user/:id`}  element={<Cart/>}/>
       <Route  path={`/product/:id`} element={<ShowProducts/>}/>
-     </Route>
+    </Route>
      <Route path='/login' element={<Login/>} />
      <Route  path='/signup' element={<Signup/>}/>
      </Routes>
