@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { signupThunk } from "../features/authThunk"
 
 export default function Signup() {
-  const { user, loading, error } = useSelector(state => state.auth)
+  const { loading, error } = useSelector(state => state.auth)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 

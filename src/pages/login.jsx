@@ -1,9 +1,12 @@
 import React from "react"
 import Input from "../components/Input"
 import Button from "../components/Button"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { useDispatch } from "react-redux"
 
 export default function Login() {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   return (
     <div className="w-full h-screen bg-gradient-to-br from-cyan-500 to-blue-600 flex justify-center items-center px-4">
       <form className="w-full max-w-md bg-white px-6 py-8 flex flex-col gap-5 rounded-2xl shadow-2xl">

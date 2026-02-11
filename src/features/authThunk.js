@@ -33,7 +33,7 @@ export const signupThunk = createAsyncThunk(
 
       return newUser
     } catch (e) {
-      return rejectWithValue("Signup failed")
+      return rejectWithValue("Signup failed",e)
     }
   }
 )
@@ -58,7 +58,7 @@ export const loginThunk = createAsyncThunk(
       sessionStorage.setItem("user", JSON.stringify(user))
       return user
     } catch (e) {
-      return rejectWithValue("Login failed")
+      return rejectWithValue("Login failed",e)
     }
   }
 )
