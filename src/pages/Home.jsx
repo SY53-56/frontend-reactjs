@@ -19,7 +19,7 @@ export default function Home() {
   return (
    <>
      
-     <div className='w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+     <div className='w-full m-auto grid px-24 gap-y-10 mt-14 grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
    {products.map(item=>(<Card product={item}/>))}
      </div>
    </>
