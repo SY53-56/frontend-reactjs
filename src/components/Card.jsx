@@ -3,7 +3,7 @@
  import Button from "./Button";
 export default function Card({ product }) {
 
-  const star = Math.floor(product?.rating?.rate || 0);
+  const star = Math.floor(product?.rating || 0);
 
   return (
     <div className="w-80 h-auto bg-gray-200 rounded-lg p-3 flex flex-col items-start shadow-lg">
@@ -11,7 +11,7 @@ export default function Card({ product }) {
       <Link to={`/product/${product.id}`}>
         <img
           className="w-72 h-52 p-3 hover:scale-105 transition-all duration-500 object-contain rounded-md"
-          src={product?.image || "https://via.placeholder.com/150"}
+          src={product?.images[0] || "https://via.placeholder.com/150"}
         />
       </Link>
 

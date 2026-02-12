@@ -4,9 +4,9 @@ import axios from "axios";
 
 export const productsThunk = createAsyncThunk( "product/data",async(_,{rejectWithValue})=>{
     try{
-        const res = await axios.get("https://fakestoreapi.com/products")
-        console.log( "sahul",res.data)
-        return res.data
+        const res = await axios.get("https://dummyjson.com/products")
+        console.log("data new ",res.data.products)
+        return res.data.products
         
     }catch(e){
         return rejectWithValue(e)
@@ -15,9 +15,17 @@ export const productsThunk = createAsyncThunk( "product/data",async(_,{rejectWit
 
 export const singleProduct = createAsyncThunk("product/single", async(id,{rejectWithValue})=>{
    try{
-   const res= await axios.get(`https://fakestoreapi.com/products/${id}`)
+   const res= await axios.get(`https://dummyjson.com/products/${id}`)
     return res.data
    }catch(e){
     return rejectWithValue(e)
    }
+})
+export const categoryProduct = createAsyncThunk("products/category",async(product,{rejectWithValue})=>{
+    try{
+   const res = await axios.get(`https://dummyjson.com/products/category/${product}`)
+     return res.data
+    }catch(e){
+    return rejectWithValue(e)
+    }
 })

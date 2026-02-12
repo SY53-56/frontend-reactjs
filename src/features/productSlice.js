@@ -20,7 +20,7 @@ const productSlice = createSlice({
             })
             .addCase(productsThunk.fulfilled, (state, action) => {
                 state.loading = false;
-                state.products = action.payload;
+                state.products = action.payload
                 state.error = null;
             })
             .addCase(productsThunk.rejected, (state, action) => {

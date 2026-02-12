@@ -22,7 +22,7 @@ export default function ShowProducts() {
         <div className="w-full bg-gray-100 rounded-2xl p-6 flex justify-center items-center">
           <img
             className="max-h-[450px] object-contain rounded-xl"
-            src={ product.image ||`https://images.unsplash.com/photo-1713470599405-3ca0ae1363f8?q=80&w=1074&auto=format&fit=crop`}
+            src={ product.images[0] ||`https://images.unsplash.com/photo-1713470599405-3ca0ae1363f8?q=80&w=1074&auto=format&fit=crop`}
             alt="Product"
           />
         </div>

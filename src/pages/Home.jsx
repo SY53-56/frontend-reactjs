@@ -2,6 +2,7 @@ import React, { useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { productsThunk } from '../features/productThunk'
 import Card from '../components/Card'
+import axios from 'axios'
 
 export default function Home() {
   const {user}= useSelector(state=> state.auth)
@@ -17,7 +18,20 @@ export default function Home() {
     
   },[dispatch])
 
-   
+ useEffect(() => {
+  const fetchProducts = async () => {
+    try {
+      const response = await axios.get("https://dummyjson.com/products");
+      // Now response.data will contain your items
+      console.log("sahul new data", response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  fetchProducts();
+}, []);
+
   return (
    <>
      
