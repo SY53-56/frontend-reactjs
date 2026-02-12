@@ -12,3 +12,12 @@ export const productsThunk = createAsyncThunk( "product/data",async(_,{rejectWit
         return rejectWithValue(e)
     }
 })
+
+export const singleProduct = createAsyncThunk("product/single", async(id,{rejectWithValue})=>{
+   try{
+   const res= await axios.get(`https://fakestoreapi.com/products/${id}`)
+    return res.data
+   }catch(e){
+    return rejectWithValue(e)
+   }
+})

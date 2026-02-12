@@ -14,8 +14,10 @@ export default function Home() {
 
   useEffect(()=>{
     dispatch(productsThunk())
+    
   },[dispatch])
 
+   
   return (
    <>
      

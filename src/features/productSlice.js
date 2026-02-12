@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { productsThunk } from "./productThunk";
+import { productsThunk, singleProduct } from "./productThunk";
 
 let initialState = {
     products: [],
@@ -26,8 +26,21 @@ const productSlice = createSlice({
             .addCase(productsThunk.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.payload;
-            });
+            })
+            .addCase(singleProduct.pending,(state)=>{
+             state.loading = true
+            })
+            .addCase(singleProduct.fulfilled, (state,action)=>{
+                state.loading = false
+                state.product = action.payload
+                state.error = null
+            })
+            .addCase(singleProduct.rejected, (state,action)=>{
+                state.loading = false
+                state.error =action.payload
+            })
     }
+
 });
 
 export default productSlice.reducer;
