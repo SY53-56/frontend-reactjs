@@ -22,7 +22,7 @@ export default function ShowProducts() {
         <div className="w-full bg-gray-100 rounded-2xl p-6 flex justify-center items-center">
           <img
             className="max-h-[450px] object-contain rounded-xl"
-            src={ product.images[0] ||`https://images.unsplash.com/photo-1713470599405-3ca0ae1363f8?q=80&w=1074&auto=format&fit=crop`}
+            src={ product.images ||`https://images.unsplash.com/photo-1713470599405-3ca0ae1363f8?q=80&w=1074&auto=format&fit=crop`}
             alt="Product"
           />
         </div>
@@ -36,7 +36,7 @@ export default function ShowProducts() {
           <p className="text-gray-600 leading-relaxed text-base">
           {product.description}
           </p>
-
+          <p className="text-gray-600 leading-relaxed text-base">{product.brand}</p>
           <div className="flex items-center gap-4">
             <span className="text-3xl font-bold text-indigo-600">
               ${product.price}
