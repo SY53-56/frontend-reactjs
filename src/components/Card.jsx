@@ -1,7 +1,7 @@
  import { Link } from "react-router";
  import { StarIcon } from "lucide-react";
  import Button from "./Button";
-export default function Card({ product }) {
+export default function Card({ product ,addCart  }) {
 
   const star = Math.floor(product?.rating || 0);
 
@@ -31,6 +31,7 @@ export default function Card({ product }) {
 
         <div className="flex-1 flex justify-end items-center">
           <Button
+          onClick={addCart}
             className="px-3 py-2 rounded-md bg-blue-600 text-white"
             name="Add cart"
           />

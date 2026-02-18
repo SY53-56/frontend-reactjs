@@ -38,12 +38,13 @@ export default function Header() {
 
         {/* Desktop Right Section */}
         <div className="hidden lg:flex items-center gap-6">
-          <ShoppingCartIcon className="cursor-pointer text-slate-300 hover:text-emerald-400 transition-colors" />
+
 
           {user ? (
             <div className="flex items-center justify-center gap-4">
+              <Link to={`/user/${user?.id}`}>          <ShoppingCartIcon className="cursor-pointer text-slate-300 hover:text-emerald-400 transition-colors" /></Link>
     <div className="rounded-full bg-white shadow-2xl px-3">
-                <span className=" text-3xl   text-center  text-black font-medium">{user.username.charAt(0)}</span>
+                <span className=" text-3xl   text-center  text-emerald-500 font-medium">{user.username.charAt(0)}</span>
     </div>
               <Button
               name=" Logout"
