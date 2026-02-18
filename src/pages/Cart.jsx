@@ -23,7 +23,10 @@ export default function Cart() {
    const handleDecearseProduct = useCallback((item)=>{
     dispatch(decreaseProductCart({id:item.id}))
    },[dispatch])
-
+  
+    const handleRemoveProduct = useCallback((item)=>{
+      dispatch(removeCart({id:item.id}))
+    },[dispatch])
   return (
     <section className="w-full flex flex-col lg:flex-row gap-10 px-6 lg:px-20 mt-10">
 
@@ -37,10 +40,10 @@ export default function Cart() {
           cart.map(item => (
             <div
               key={item.id}
-              className="flex items-center border justify-center gap-80  rounded-md  px-5 shadow-2xl border-b py-4"
+              className=" flex bg-gray-100 flex-col lg:flex-row items-center  justify-between  rounded-md gap-4  px-5 shadow-2xl drop-shadow-md py-4"
             >
               {/* Product Info */}
-              <div className="flex items-center gap-4">
+              <div className="flex w-80 items-center gap-4">
                 <img
                   src={item.thumbnail}
                   alt={item.title}
@@ -53,28 +56,28 @@ export default function Cart() {
               </div>
 
               {/* Quantity Controls */}
-              <div className="flex items-center gap-3">
-              <Button className="bg-gray-400 py-1 px-2 font-bold rounded-md"  onClick={()=>decreaseProductCart(item)}  name="-"/>
+              <div className="flex  items-center   gap-32 lg:gap-3">
+            <div className="flex  items-center gap-3">
+                  <Button className="bg-gray-400 py-1 text-2xl px-2 font-bold rounded-md"  onClick={()=>decreaseProductCart(item)}  name="-"/>
 
                 <span>{item.quantity}</span>
-            <Button className="bg-gray-400 py-1 px-2 rounded-md" onClick={()=>{handleIncreaseProduct(item)}} name="+"/>
+            <Button className="bg-gray-400 py-1 text-2xl px-2 rounded-md" onClick={()=>{handleIncreaseProduct(item)}} name="+"/>
                 
+            </div>
+
+            <Button className="px-4 py-1  rounded-md text-white bg-red-500 hover:bg-red-600 transition-all duration-500" name="remove" onClick={()=>handleRemoveProduct(item)}/>
+              
               </div>
 
               {/* Remove */}
-              <button
-                onClick={() => dispatch(removeCart({ id: item.id }))}
-                className="text-red-500 font-semibold"
-              >
-                Remove
-              </button>
+             
             </div>
           ))
         )}
       </div>
 
       {/* 💳 Order Summary */}
-      <div className="w-full lg:w-96 border rounded-lg p-6 shadow-md h-fit">
+      <div className="w-full lg:w-96  mt-16 rounded-lg p-6 shadow-lg bg-gray-100 h-fit">
         <h2 className="text-2xl font-bold mb-6">Order Summary</h2>
 
         <div className="flex justify-between mb-4">
@@ -92,9 +95,7 @@ export default function Cart() {
           <span>${(total + 10).toFixed(2)}</span>
         </div>
 
-        <button className="w-full mt-6 bg-black text-white py-3 rounded-lg hover:opacity-90">
-          Checkout
-        </button>
+<Button name="checkout" className="bg-black text-white w-full py-2 mt-4 rounded-lg"/>
       </div>
 
     </section>
