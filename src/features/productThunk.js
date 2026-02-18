@@ -24,7 +24,7 @@ export const singleProduct = createAsyncThunk("product/single", async(id,{reject
 export const categoryProduct = createAsyncThunk("products/category",async(product,{rejectWithValue})=>{
     try{
    const res = await axios.get(`https://dummyjson.com/products/category/${product}`)
-     return res.data
+     return res.data.products
     }catch(e){
     return rejectWithValue(e)
     }

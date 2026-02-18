@@ -10,6 +10,7 @@ import ShowProducts from './pages/ShowProducts'
 import Cart from './pages/Cart'
 import Login from './pages/login'
 import Signup from './pages/signup'
+import CategoryProduct from './pages/CategoryProduct'
 
 function App() {
   
@@ -21,6 +22,7 @@ function App() {
       <Route path={`/product`}  element={<Products/>}/>
       <Route path={`/user/:id`}  element={<Cart/>}/>
       <Route  path={`/product/:id`} element={<ShowProducts/>}/>
+      <Route path={`/products/:category`}  element={<CategoryProduct/>}/>
     </Route>
 
      <Route path='/login' element={<Login/>} />
