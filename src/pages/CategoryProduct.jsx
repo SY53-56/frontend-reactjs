@@ -27,9 +27,9 @@ export default function CategoryProduct() {
   }, [dispatch, urlCategory]);
 
   return (
-    <section className="w-full flex gap-8 px-6 lg:px-20 mt-8">
+    <section className="w-full  flex gap-8 px-6  lg:px-20 mt-8">
       {/* Sidebar */}
-      <aside className="w-72 bg-white shadow-lg rounded-2xl p-6 h-[85vh] overflow-y-auto border">
+      <aside className="w-72 bg-white   shadow-lg rounded-2xl p-6 h-[85vh] overflow-y-auto  sticky top-6 border">
         <h2 className="text-2xl font-bold mb-6 border-b pb-3">
           Filter Products
         </h2>
@@ -58,7 +58,7 @@ export default function CategoryProduct() {
       </aside>
 
       {/* Products Area */}
-      <div className="flex-1 bg-gray-50 rounded-2xl p-6 border">
+      <div className="flex-1 bg-gray-50 rounded-2xl p-6 border  overflow-y-auto">
         <h2 className="text-2xl font-bold mb-6 capitalize">
           {urlCategory} Products
         </h2>

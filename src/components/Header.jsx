@@ -7,6 +7,7 @@ import Button from "./Button";
 
 export default function Header() {
   const { user } = useSelector((state) => state.auth);
+  const {cart} = useSelector(state=> state.cart)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [show, setShow] = useState(false);
@@ -42,7 +43,7 @@ export default function Header() {
 
           {user ? (
             <div className="flex items-center justify-center gap-4">
-              <Link to={`/user/${user?.id}`}>          <ShoppingCartIcon className="cursor-pointer text-slate-300 hover:text-emerald-400 transition-colors" /></Link>
+              <Link to={`/user/${user?.id}`}>          <ShoppingCartIcon className="cursor-pointer relative text-slate-300 hover:text-emerald-400 transition-colors" /><span className="absolute top-2 text-white rounded-full right-66">{cart.length}</span></Link>
     <div className="rounded-full bg-white shadow-2xl px-3">
                 <span className=" text-3xl   text-center  text-emerald-500 font-medium">{user.username.charAt(0)}</span>
     </div>

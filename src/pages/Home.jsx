@@ -1,9 +1,8 @@
-import React, { useCallback, useEffect} from 'react'
+import React, {  useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { productsThunk } from '../features/productThunk'
 import Card from '../components/Card'
 
-import { addCart } from '../features/cartSlice'
 import { Link } from 'react-router'
 
 export default function Home() {
@@ -21,22 +20,6 @@ export default function Home() {
     
   },[dispatch])
 
- 
- 
- const handleAddCart = useCallback((product)=>{
-   try{
-   dispatch(addCart(product))
-   }catch(e){
-    alert(e)
-   }
- },[dispatch])
-
-  "beauty",
-"fragrances",
-"furniture",
-"groceries",
-"laptops",
-"smartphones"
  let photo =[
  {name:"furniture",img:"https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8ZnVybml0dXJlfGVufDB8fDB8fHww"}
   ,{name:"laptops",img:"https://plus.unsplash.com/premium_photo-1681302427948-2fd0eca629b1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bGFwdG9wfGVufDB8fDB8fHww"},
@@ -69,7 +52,7 @@ export default function Home() {
   </div>
 
      <div className='w-full px-15  grid lg:px-24 gap-y-10 mt-14 grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-   {products.map(item=>(<Card product={item}   key={item.id} addCart={()=>handleAddCart(item)}/>))}
+   {products.map(item=>(<Card product={item}   key={item.id} />))}
      </div>
    </>
   )

@@ -1,10 +1,19 @@
  import { Link } from "react-router";
+ import { useCallback } from "react";
  import { StarIcon } from "lucide-react";
  import Button from "./Button";
-export default function Card({ product ,addCart  }) {
-
+ import { addCart } from "../features/cartSlice";
+import { useDispatch } from "react-redux";
+export default function Card({ product   }) {
+  const dispatch = useDispatch()
   const star = Math.floor(product?.rating || 0);
-
+const handleAddCart = useCallback((product)=>{
+   try{
+   dispatch(addCart(product))
+   }catch(e){
+    alert(e)
+   }
+ },[dispatch])
   return (
     <div className="w-80 h-auto bg-gray-200 rounded-lg p-3 flex flex-col items-start shadow-lg">
 
@@ -31,7 +40,7 @@ export default function Card({ product ,addCart  }) {
 
         <div className="flex-1 flex justify-end items-center">
           <Button
-          onClick={addCart}
+          onClick={handleAddCart}
             className="px-3 py-2 rounded-md bg-blue-600 text-white"
             name="Add cart"
           />
