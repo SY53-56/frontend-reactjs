@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { loginThunk, signupThunk } from "./authThunk"
+import { loginThunk, saveProductsThunk, signupThunk } from "./authThunk"
 
 const initialState = {
-  user: null,
+  user: JSON.parse(sessionStorage.getItem("user")) || null,
+  saveProducts: JSON.parse(localStorage.getItem("saveProduct")) || [],
   loading: false,
   error: null
 }
@@ -42,6 +43,18 @@ const authSlice = createSlice({
       })
       .addCase(signupThunk.rejected, (state, action) => {
         state.loading = false
+        state.error = action.payload
+      })
+      .addCase(saveProductsThunk.pending, (state)=>{
+        state.loading= true
+      })
+      .addCase(saveProductsThunk.fulfilled, (state,action)=>{
+        state.loading = false
+        state.saveProducts = action.payload
+        state.error= null
+      })
+      .addCase(saveProductsThunk.rejected, (state,action)=>{
+          state.loading = false
         state.error = action.payload
       })
   }

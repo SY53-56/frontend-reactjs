@@ -37,8 +37,36 @@ export const signupThunk = createAsyncThunk(
     }
   }
 )
+export const saveProductsThunk = createAsyncThunk(
+  "save/product",
+  async (product, { rejectWithValue }) => {
+    try {
+      const savedProducts =
+        JSON.parse(localStorage.getItem("saveProduct")) || [];
 
-// LOGIN
+      const existingIndex = savedProducts.findIndex(
+        (p) => p.id === product.id
+      );
+
+      if (existingIndex !== -1) {
+        // Remove if already exists
+        savedProducts.splice(existingIndex, 1);
+      } else {
+        // Add if not exists
+        savedProducts.push(product);
+      }
+
+      localStorage.setItem(
+        "saveProduct",
+        JSON.stringify(savedProducts)
+      );
+
+      return savedProducts; // important
+    } catch (e) {
+      return rejectWithValue(e.message);
+    }
+  }
+);
 export const loginThunk = createAsyncThunk(
   "auth/login",
   async ({ email, password }, { rejectWithValue }) => {

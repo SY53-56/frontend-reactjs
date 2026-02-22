@@ -1,7 +1,7 @@
-import { createContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 
- export const themeContext = createContext()
+ export const ThemeContext = createContext(null)
 
   
 
@@ -12,9 +12,9 @@ import { createContext, useState } from "react";
         setTheme(prev=> prev ==="light"?"dark":"light")
      }
    return (
-    <themeContext.Provider value={{theme , handleTheme}}>
+    <ThemeContext.Provider value={{theme , handleTheme}}>
         {children}
-    </themeContext.Provider>
+    </ThemeContext.Provider>
    )
  }
- 
+export const useTheme = () => useContext(ThemeContext);

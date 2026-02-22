@@ -1,6 +1,6 @@
 
 
-import { Router , Route, Routes} from 'react-router'
+import { Router , Route, Routes} from 'react-router-dom'
 import './App.css'
 import Card from './components/Card'
 import Home from './pages/Home'
@@ -11,6 +11,8 @@ import Cart from './pages/Cart'
 import Login from './pages/login'
 import Signup from './pages/signup'
 import CategoryProduct from './pages/CategoryProduct'
+import DashBoard from './pages/DashBoard'
+import SaveProduct from './pages/SaveProduct'
 
 function App() {
   
@@ -23,6 +25,8 @@ function App() {
       <Route path={`/user/:id`}  element={<Cart/>}/>
       <Route  path={`/product/:id`} element={<ShowProducts/>}/>
       <Route path={`/products/:category`}  element={<CategoryProduct/>}/>
+      <Route path={"/user/dashboard"}  element={<DashBoard/>}/>
+      <Route  path="/users/saveproduct/:id" element={<SaveProduct/>}/>
     </Route>
 
      <Route path='/login' element={<Login/>} />
