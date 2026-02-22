@@ -13,12 +13,15 @@ import Signup from './pages/signup'
 import CategoryProduct from './pages/CategoryProduct'
 import DashBoard from './pages/DashBoard'
 import SaveProduct from './pages/SaveProduct'
+import { ScrollTop } from './components/ScrollTop'
 
 function App() {
   
   return (
     <>
+     <ScrollTop/>
     <Routes>
+     
       <Route element={<Layouts/>}>
       <Route path='/' element={<Home/>}/>
       <Route path={`/product`}  element={<Products/>}/>

@@ -28,6 +28,7 @@ export default function Home() {
 {name:"fragrances", img:"https://images.unsplash.com/photo-1672848700906-2b8ca62639e4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8JTIyZnJhZ3JhbmNlc3xlbnwwfHwwfHx8MA%3D%3D"},
 {name:"groceries", img:"https://images.unsplash.com/photo-1753288589313-3030a6d3c1d7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fCUyMmdyb2Nlcmllc3xlbnwwfHwwfHx8MA%3D%3D"}
  ]
+
   return (
    <>
   <div className='flex flex-col lg:px-24 px-16 gap-7'>
