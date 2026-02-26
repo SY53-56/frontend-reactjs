@@ -1,16 +1,17 @@
-import React, { useState } from "react";
-import { Link, useNavigate, useParams,  } from "react-router-dom";
-import { ShoppingCartIcon, MenuIcon, X, LayoutDashboardIcon, MessageCircleCodeIcon, MoreHorizontal, MoreVertical, PhoneCallIcon, HistoryIcon, SaveAllIcon } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate, useParams,  } from "react-router-dom";
+import { ShoppingCartIcon, MenuIcon, X, LayoutDashboardIcon, MessageCircleCodeIcon, MoreHorizontal, MoreVertical, PhoneCallIcon, HistoryIcon, SaveAllIcon, SearchAlertIcon, SearchIcon } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../features/authSlice";
 import Button from "./Button";
+import Input from "./Input";
 
 export default function Header() {
   const { user } = useSelector((state) => state.auth);
   const {cart} = useSelector(state=> state.cart)
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const {id} = useParams()
+  const location = useLocation()
   const [show, setShow] = useState(false);
   const [showBox, setShowBox]=useState(false)
   const handleLogout = async () => {
@@ -18,10 +19,18 @@ export default function Header() {
     navigate("/");
   };
 
+
+   
   const handleBox= ()=>{
     setShowBox(prev=> !prev)
   }
+ useEffect(()=>{
+  if(location.pathname){
+    setShowBox(false)
+  }
+  console.log("page navigate", location.pathname)
 
+ },[location.pathname])
   return (
     <header className="w-full bg-slate-900 text-slate-100 border-b border-slate-800 sticky top-0 z-50">
       <div className="w-full relative mx-auto flex items-center border-b-2 border-emerald-500 lg:border-none justify-between px-6 lg:px-20 py-4">
@@ -31,13 +40,11 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex gap-8 font-medium text-slate-300">
-          <Link to="/" className="hover:text-emerald-400 transition-colors">Home</Link>
-          <Link to={`/products/beauty`}className="hover:text-emerald-400 transition-colors">Products</Link>
-          <Link to="/customer" className="hover:text-emerald-400 transition-colors">Customer Service</Link>
-          <Link to="/user/dashboard" className="hover:text-emerald-400 transition-colors">Dashboard</Link>
-        </nav>
-
+       <div className="w-[500px] flex items-center rounded-md border px-3">
+         <Input type="text"  className="w-full border-none outline-none"  placeHolder="search product..."/>
+         <SearchIcon className="cursor-pointer"  size={28}/>
+       </div>
+      
         {/* Desktop Right Section */}
         <div className="hidden lg:flex items-center gap-6">
 
@@ -61,7 +68,7 @@ export default function Header() {
           <Link className="w-full" to={`/users/saveproduct/${user?.id}`}> <p className="flex w-full gap-1.5 cursor-pointer bg-gray-400 hover:bg-gray-700 px-3.5 rounded-md py-2"><SaveAllIcon/>SaveBoard</p></Link>
                    <p className="flex gap-1.5 w-full cursor-pointer bg-gray-400 hover:bg-gray-700 px-3.5 rounded-md py-2"><PhoneCallIcon/> customer service</p>
                    <p className="flex gap-1.5 w-full cursor-pointer bg-gray-400 hover:bg-gray-700 px-3.5 rounded-md py-2"><HistoryIcon/> cart history</p>
-                    <Link className="w-full" to={`/users/${id}`}> <p className="flex w-full gap-1.5 cursor-pointer bg-gray-400 hover:bg-gray-700 px-3.5 rounded-md py-2"><LayoutDashboardIcon/> DashBoard</p></Link>
+                    <Link className="w-full" to={`/user/dashboard/${user?.id}`}> <p className="flex w-full gap-1.5 cursor-pointer bg-gray-400 hover:bg-gray-700 px-3.5 rounded-md py-2"><LayoutDashboardIcon/> DashBoard</p></Link>
                 </div>)}
             </div>
           ) : (

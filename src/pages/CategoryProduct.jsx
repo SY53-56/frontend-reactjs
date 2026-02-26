@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { categoryProduct } from "../features/productThunk";
 import Card from "../components/Card";
@@ -8,7 +8,7 @@ export default function CategoryProduct() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { category: urlCategory } = useParams();
-
+ const [showCategory,setShowCategory] = useState(false)
   const { category, loading } = useSelector((state) => state.product);
 
   const categories = [
@@ -27,12 +27,15 @@ export default function CategoryProduct() {
   }, [dispatch, urlCategory]);
 
   return (
-    <section className="w-full  flex gap-8 px-6  lg:px-20 mt-8">
+    <section className="w-full  flex flex-col lg:flex-row gap-8 px-6  lg:px-20 my-8">
       {/* Sidebar */}
-      <aside className="w-72 bg-white   shadow-lg rounded-2xl p-6 h-[85vh] overflow-y-auto  sticky top-6 border">
-        <h2 className="text-2xl font-bold mb-6 border-b pb-3">
+      <aside className="w-full lg:w-72 bg-white   shadow-lg rounded-2xl p-6 h-96 lg:h-[85vh] overflow-y-auto   lg:sticky top-6 border">
+      <div className="flex gap-9">
+          <h2 className="text-2xl font-bold mb-6 border-b pb-3">
           Filter Products
         </h2>
+
+      </div>
 
         <div className="flex flex-col gap-4">
           <h3 className="text-lg font-semibold text-gray-700">

@@ -29,7 +29,7 @@ if(!user) return alert("please")
  }
 
   return (
-    <div className="w-80 h-auto bg-gray-200 rounded-lg p-3 flex flex-col items-start shadow-lg">
+    <div className="w-80 h-auto bg-gray-200 rounded-lg p-3 flex flex-col items-start shadow-lg ">
 
       <Link to={`/product/${product.id}`} className="relative">
         <img 
