@@ -3,10 +3,12 @@ import Button from "../components/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { singleProduct } from "../features/productThunk";
 import { useParams } from "react-router";
+import UseProductAction from "../hooks/UseProductAction";
 
 export default function ShowProducts() {
   const dispatch = useDispatch()
   const {id} = useParams()
+  const {handleAddToCart} = UseProductAction()
    const {product , products , loading} = useSelector(state=> state.product)
    console.log(  'sahul',product)
     console.log(products)
@@ -50,6 +52,7 @@ export default function ShowProducts() {
             <Button
               className="px-6 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white"
               name="Add to Cart"
+              onClick={handleAddToCart(product)}
             />
 
             <Button
