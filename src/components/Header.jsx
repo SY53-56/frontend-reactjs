@@ -5,8 +5,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../features/authSlice";
 import Button from "./Button";
 import Input from "./Input";
+import { debounce } from "../utilit/debounce";
 
-export default function Header() {
+
+export default function Header({search, setSearchText}) {
   const { user } = useSelector((state) => state.auth);
   const {cart} = useSelector(state=> state.cart)
   const dispatch = useDispatch();
@@ -31,6 +33,17 @@ export default function Header() {
   console.log("page navigate", location.pathname)
 
  },[location.pathname])
+  
+
+ const handleChange =(value)=>{
+  setSearchText(value)
+  if(value){
+ navigate(`/product/search`)
+  }
+  
+ 
+ }
+
   return (
     <header className="w-full bg-slate-900 text-slate-100 border-b border-slate-800 sticky top-0 z-50">
       <div className="w-full relative mx-auto flex items-center border-b-2 border-emerald-500 lg:border-none justify-between px-6 lg:px-20 py-4">
@@ -40,9 +53,9 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-       <div className="w-[500px] flex items-center rounded-md border px-3">
-         <Input type="text"  className="w-full border-none outline-none"  placeHolder="search product..."/>
-         <SearchIcon className="cursor-pointer"  size={28}/>
+       <div className="w-[500px] hidden lg:flex items-center rounded-md border px-3">
+         <Input type="text"  className="w-full border-none outline-none" name="search" value={search} onChange={(e)=>handleChange(e.target.value)}  placeHolder="search product..."/>
+         <SearchIcon className="cursor-pointer"   size={28}/>
        </div>
       
         {/* Desktop Right Section */}

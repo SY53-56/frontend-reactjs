@@ -14,6 +14,7 @@ import CategoryProduct from './pages/CategoryProduct'
 import DashBoard from './pages/DashBoard'
 import SaveProduct from './pages/SaveProduct'
 import { ScrollTop } from './components/ScrollTop'
+import SearchPage from './pages/SearchPage'
 
 function App() {
   
@@ -30,6 +31,7 @@ function App() {
       <Route path={`/products/:category`}  element={<CategoryProduct/>}/>
       <Route path={"/user/dashboard/:id"}  element={<DashBoard/>}/>
       <Route  path="/users/saveproduct/:id" element={<SaveProduct/>}/>
+      <Route path={`/product/search`} element={<SearchPage/>}/>
     </Route>
 
      <Route path='/login' element={<Login/>} />

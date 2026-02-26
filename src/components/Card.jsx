@@ -55,7 +55,7 @@ if(!user) return alert("please")
 
         <div className="flex-1 flex justify-end items-center">
           <Button
-          onClick={handleAddCart}
+          onClick={()=>handleAddCart(product)}
             className="px-3 py-2 rounded-md bg-blue-600 text-white"
             name="Add cart"
           />
