@@ -40,7 +40,7 @@ export default function Cart() {
           cart.map(item => (
             <div
               key={item.id}
-              className=" flex bg-gray-100 flex-col lg:flex-row items-center  justify-between  rounded-md gap-4  px-5 shadow-2xl drop-shadow-md py-4"
+              className=" flex mb-5 bg-gray-100 flex-col lg:flex-row items-center  justify-between  rounded-md gap-4  px-5 shadow-2xl drop-shadow-md py-4"
             >
               {/* Product Info */}
               <div className="flex w-80 items-center gap-4">

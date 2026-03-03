@@ -1,22 +1,16 @@
  import { Link } from "react-router";
- import { useCallback } from "react";
+
  import { StarIcon } from "lucide-react";
  import Button from "./Button";
- import { addCart } from "../features/cartSlice";
+
 import { useDispatch, useSelector } from "react-redux";
 import { saveProductsThunk } from "../features/authThunk";
-export default function Card({ product   }) {
+import UseProductAction from "../hooks/UseProductAction";
+ function Card({ product   }) {
   const dispatch = useDispatch()
   const { saveProducts , user}= useSelector(state=> state.auth)
-
+  const {handleAddToCart} = UseProductAction()
   const star = Math.floor(product?.rating || 0);
-const handleAddCart = useCallback((product)=>{
-   try{
-   dispatch(addCart(product))
-   }catch(e){
-    alert(e)
-   }
- },[dispatch])
 
 const isSave = saveProducts.some(p => p.id === product.id);
 
@@ -55,7 +49,7 @@ if(!user) return alert("please")
 
         <div className="flex-1 flex justify-end items-center">
           <Button
-          onClick={()=>handleAddCart(product)}
+          onClick={()=>handleAddToCart(product)}
             className="px-3 py-2 rounded-md bg-blue-600 text-white"
             name="Add cart"
           />
@@ -65,3 +59,5 @@ if(!user) return alert("please")
     </div>
   );
 }
+
+export default Card

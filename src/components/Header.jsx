@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate, useParams,  } from "react-router-dom";
-import { ShoppingCartIcon, MenuIcon, X, LayoutDashboardIcon, MessageCircleCodeIcon, MoreHorizontal, MoreVertical, PhoneCallIcon, HistoryIcon, SaveAllIcon, SearchAlertIcon, SearchIcon } from "lucide-react";
+import { Link, useLocation, useNavigate  } from "react-router-dom";
+import { ShoppingCartIcon, MenuIcon, X, LayoutDashboardIcon, MessageCircleCodeIcon, MoreVertical, PhoneCallIcon, HistoryIcon, SaveAllIcon, SearchAlertIcon, SearchIcon } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../features/authSlice";
 import Button from "./Button";
 import Input from "./Input";
-import { debounce } from "../utilit/debounce";
+
 
 
 export default function Header({search, setSearchText}) {
@@ -79,7 +79,7 @@ export default function Header({search, setSearchText}) {
                 <button className="cursor-pointer" onClick={handleBox}><MoreVertical/></button>
                 {showBox&& (<div className="w-60 absolute px-6 top-18 right-18 h-auto rounded-md flex gap-3 flex-col shadow-2xl items-center py-5 bg-white">
           <Link className="w-full" to={`/users/saveproduct/${user?.id}`}> <p className="flex w-full gap-1.5 cursor-pointer bg-gray-400 hover:bg-gray-700 px-3.5 rounded-md py-2"><SaveAllIcon/>SaveBoard</p></Link>
-                   <p className="flex gap-1.5 w-full cursor-pointer bg-gray-400 hover:bg-gray-700 px-3.5 rounded-md py-2"><PhoneCallIcon/> customer service</p>
+          <Link to={`/customerService/${user?.id}`} className="flex gap-1.5 w-full cursor-pointer bg-gray-400 hover:bg-gray-700 px-3.5 rounded-md py-2"><PhoneCallIcon/> customer service</Link>
                    <p className="flex gap-1.5 w-full cursor-pointer bg-gray-400 hover:bg-gray-700 px-3.5 rounded-md py-2"><HistoryIcon/> cart history</p>
                     <Link className="w-full" to={`/user/dashboard/${user?.id}`}> <p className="flex w-full gap-1.5 cursor-pointer bg-gray-400 hover:bg-gray-700 px-3.5 rounded-md py-2"><LayoutDashboardIcon/> DashBoard</p></Link>
                 </div>)}
