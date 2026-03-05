@@ -15,6 +15,8 @@ export default function Cart() {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
+  
+  const discountPrice = total/100*10
     
   const handleIncreaseProduct= useCallback((item)=>{
   dispatch(increaseCartProduct({id:item.id}))
@@ -58,7 +60,7 @@ export default function Cart() {
               {/* Quantity Controls */}
               <div className="flex  items-center   gap-32 lg:gap-3">
             <div className="flex  items-center gap-3">
-                  <Button className="bg-gray-400 py-1 text-2xl px-2 font-bold rounded-md"  onClick={()=>decreaseProductCart(item)}  name="-"/>
+                  <Button className="bg-gray-400 py-1 text-2xl px-2 font-bold rounded-md"  onClick={()=>handleDecearseProduct(item)}  name="-"/>
 
                 <span>{item.quantity}</span>
             <Button className="bg-gray-400 py-1 text-2xl px-2 rounded-md" onClick={()=>{handleIncreaseProduct(item)}} name="+"/>
@@ -90,9 +92,13 @@ export default function Cart() {
           <span>$10.00</span>
         </div>
 
+ <div className="flex justify-between mb-4">
+          <span>Discount price</span>
+          <span>${discountPrice}</span>
+        </div>
         <div className="flex justify-between font-bold text-lg border-t pt-4">
           <span>Total</span>
-          <span>${(total + 10).toFixed(2)}</span>
+          <span>${(total + 10).toFixed(2) - discountPrice}</span>
         </div>
 
 <Button name="checkout" className="bg-black text-white w-full py-2 mt-4 rounded-lg"/>

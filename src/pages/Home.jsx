@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
    <>
-  <div className='flex flex-col lg:px-24 px-16 gap-7'>
+  <div className='flex flex-col lg:px-24 px-16 gap-7 mb-10'>
     <h1 className='text-3xl font-bold'>category of product </h1>
      <div className='w-full gap-10 grid grid-cols-2 lg:grid-cols-6'>
   {photo.map((item, index) => (
