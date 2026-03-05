@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const productsThunk = createAsyncThunk( "product/data",async(_,{rejectWithValue})=>{
     try{
-        const res = await axios.get("https://dummyjson.com/products")
+        const res = await axios.get(`https://dummyjson.com/products?limit=${10}`)
         console.log("data new ",res.data.products)
         return res.data.products
         

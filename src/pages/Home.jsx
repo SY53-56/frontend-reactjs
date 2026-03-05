@@ -1,60 +1,117 @@
-import React, {  useEffect} from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { productsThunk } from '../features/productThunk'
-import Card from '../components/Card'
-
-import { Link } from 'react-router'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { productsThunk } from "../features/productThunk";
+import Card from "../components/Card";
+import img from "../assets/Spring Sale Promotion - Made with PosterMyWall.jpg";
+import { Link } from "react-router";
 
 export default function Home() {
-  const {user}= useSelector(state=> state.auth)
-  const {products}= useSelector(state=>state.product)
-  const dispatch = useDispatch()
-  const {cart} = useSelector(state=>state.cart)
-  console.log( "gdhhfjd",products)
+  const { user } = useSelector((state) => state.auth);
+  const { products } = useSelector((state) => state.product);
+  const { cart } = useSelector((state) => state.cart);
 
-  console.log(user)
- console.log("cart",cart)
+  const dispatch = useDispatch();
 
-  useEffect(()=>{
-    dispatch(productsThunk())
-    
-  },[dispatch])
+  useEffect(() => {
+    dispatch(productsThunk());
+  }, [dispatch]);
 
- let photo =[
- {name:"furniture",img:"https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8ZnVybml0dXJlfGVufDB8fDB8fHww"}
-  ,{name:"laptops",img:"https://plus.unsplash.com/premium_photo-1681302427948-2fd0eca629b1?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bGFwdG9wfGVufDB8fDB8fHww"},
-  {name:  "beauty",img:"https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"},
-{name:"smartphones",img:  "https://images.unsplash.com/photo-1603184017968-953f59cd2e37?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHNtYXJ0cGhvbmV8ZW58MHx8MHx8fDA%3D"},
-{name:"fragrances", img:"https://images.unsplash.com/photo-1672848700906-2b8ca62639e4?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8JTIyZnJhZ3JhbmNlc3xlbnwwfHwwfHx8MA%3D%3D"},
-{name:"groceries", img:"https://images.unsplash.com/photo-1753288589313-3030a6d3c1d7?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fCUyMmdyb2Nlcmllc3xlbnwwfHwwfHx8MA%3D%3D"}
- ]
+  
+  const photo = [
+    {
+      name: "furniture",
+      img: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600",
+    },
+    {
+      name: "laptops",
+      img: "https://plus.unsplash.com/premium_photo-1681302427948-2fd0eca629b1?w=600",
+    },
+    {
+      name: "beauty",
+      img: "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=600",
+    },
+    {
+      name: "smartphones",
+      img: "https://images.unsplash.com/photo-1603184017968-953f59cd2e37?w=600",
+    },
+    {
+      name: "fragrances",
+      img: "https://images.unsplash.com/photo-1672848700906-2b8ca62639e4?w=600",
+    },
+    {
+      name: "groceries",
+      img: "https://images.unsplash.com/photo-1753288589313-3030a6d3c1d7?w=600",
+    },
+  ];
 
   return (
-   <>
-  <div className='flex flex-col lg:px-24 px-16 gap-7 mb-10'>
-    <h1 className='text-3xl font-bold'>category of product </h1>
-     <div className='w-full gap-10 grid grid-cols-2 lg:grid-cols-6'>
-  {photo.map((item, index) => (
-    <div
-      className='flex flex-col items-center gap-5 px-5 py-3 bg-gray-300 rounded-md'
-      key={index}
-    >
-     <Link to={`/products/${item.name}`}>
-      <img
-        src={item.img}
-        className='w-36 lg:w-44 h-24 object-cover rounded-lg hover:scale-105 cursor-pointer transition-all duration-500'
-        alt={item.name}
-      />
-     </Link>
-      <p className="font-semibold capitalize">{item.name}</p>
-    </div>
-  ))}
-</div>
-  </div>
+    <div className="bg-gray-100 min-h-screen">
 
-     <div className='w-full px-15  grid lg:px-24 gap-y-10 mt-14 grid-cols-1 md:grid-cols-2 lg:grid-cols-4'>
-   {products.map(item=>(<Card product={item}   key={item.id} />))}
-     </div>
-   </>
-  )
+      {/* Banner */}
+<div className="lg:px-24 px-10 py-10">
+  <div className="relative w-full h-96 lg:h-[420px] rounded-xl overflow-hidden shadow-lg">
+
+    <img
+      src={img}
+      alt="Spring Sale Banner"
+      className="w-full h-full object-cover"
+    />
+
+    <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-white">
+
+      <h1 className="text-4xl font-bold mb-4">
+        Spring Mega Sale
+      </h1>
+
+      <p className="mb-6 text-lg">
+        Up to 50% Off on Top Products
+      </p>
+
+      <Link
+        to="#Product"
+        className="bg-yellow-400 text-black px-6 py-2 rounded-lg font-semibold hover:bg-yellow-300 transition"
+      >
+        Shop Now
+      </Link>
+
+    </div>
+  </div>
+</div>
+
+      {/* Categories */}
+      <div className="lg:px-24 px-6 mb-14">
+        <h1 className="text-3xl font-bold mb-8">Shop by Category</h1>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+          {photo.map((item, index) => (
+            <Link key={index} to={`/products/${item.name}`}>
+              <div className="bg-white rounded-xl shadow hover:shadow-xl transition p-4 flex flex-col items-center cursor-pointer group">
+
+                <img
+                  src={item.img}
+                  alt={item.name}
+                  className="w-28 h-28 object-cover rounded-full mb-3 group-hover:scale-110 transition"
+                />
+
+                <p className="font-semibold capitalize text-gray-700">
+                  {item.name}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+
+      {/* Products */}
+      <div id="Product"  className="lg:px-24 px-6 pb-20">
+        <h1 className="text-3xl font-bold mb-10">Popular Products</h1>
+
+        <div className="  grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-items-center">
+          {products.map((item) => (
+            <Card product={item} key={item.id} />
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }
