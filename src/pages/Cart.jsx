@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   increaseCartProduct,
   decreaseProductCart,
-  removeCart
+  removeCart,
+  removeAllcart
 } from "../features/cartSlice";
 import Button from "../components/Button";
 
@@ -29,8 +30,13 @@ export default function Cart() {
     const handleRemoveProduct = useCallback((item)=>{
       dispatch(removeCart({id:item.id}))
     },[dispatch])
+
+  const handleRemoveAllCart = () => {
+  dispatch(removeAllcart([]));
+  alert("checkout");
+};
   return (
-    <section className="w-full flex flex-col lg:flex-row gap-10 px-6 lg:px-20 mt-10">
+    <section className="w-full flex flex-col lg:flex-row gap-10 px-6 py-5 lg:px-20 mt-10">
 
       {/* 🛒 Product List */}
       <div className="flex-1  gap-4 flex  flex-col ">
@@ -101,7 +107,7 @@ export default function Cart() {
           <span>${(total + 10).toFixed(2) - discountPrice}</span>
         </div>
 
-<Button name="checkout" className="bg-black text-white w-full py-2 mt-4 rounded-lg"/>
+<Button name="checkout" onClick={handleRemoveAllCart} className="bg-black text-white w-full py-2 mt-4 rounded-lg"/>
       </div>
 
     </section>

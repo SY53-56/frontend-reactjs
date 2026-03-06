@@ -6,9 +6,8 @@ import img from "../assets/Spring Sale Promotion - Made with PosterMyWall.jpg";
 import { Link } from "react-router";
 
 export default function Home() {
-  const { user } = useSelector((state) => state.auth);
   const { products } = useSelector((state) => state.product);
-  const { cart } = useSelector((state) => state.cart);
+
 
   const dispatch = useDispatch();
 
