@@ -8,7 +8,6 @@ export default function CategoryProduct() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { category: urlCategory } = useParams();
- const [showCategory,setShowCategory] = useState(false)
   const { category, loading } = useSelector((state) => state.product);
 
   const categories = [

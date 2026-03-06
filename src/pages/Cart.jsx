@@ -7,6 +7,7 @@ import {
   removeAllcart
 } from "../features/cartSlice";
 import Button from "../components/Button";
+import toast from "react-hot-toast";
 
 export default function Cart() {
   const dispatch = useDispatch();
@@ -25,15 +26,18 @@ export default function Cart() {
 
    const handleDecearseProduct = useCallback((item)=>{
     dispatch(decreaseProductCart({id:item.id}))
+      toast.success(" cart decrease successfully")
    },[dispatch])
   
     const handleRemoveProduct = useCallback((item)=>{
       dispatch(removeCart({id:item.id}))
+        toast.success("remove successfully")
     },[dispatch])
 
   const handleRemoveAllCart = () => {
   dispatch(removeAllcart([]));
-  alert("checkout");
+  toast.success("cheakout successfully")
+
 };
   return (
     <section className="w-full flex flex-col lg:flex-row gap-10 px-6 py-5 lg:px-20 mt-10">

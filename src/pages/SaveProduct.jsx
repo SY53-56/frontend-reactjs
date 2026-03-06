@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import Card from '../components/Card'
 export default function SaveProduct() {
   const {saveProducts} = useSelector(state => state.auth)
-  console.log(saveProducts)
+
   return (
  <main>
  <h1 className='text-3xl text-center font-bold mt-5'>your save product</h1>

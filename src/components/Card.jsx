@@ -6,6 +6,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { saveProductsThunk } from "../features/authThunk";
 import UseProductAction from "../hooks/UseProductAction";
+import toast from "react-hot-toast";
  function Card({ product   }) {
   const dispatch = useDispatch()
   const { saveProducts , user}= useSelector(state=> state.auth)
@@ -19,7 +20,7 @@ const isSave = saveProducts.some(p => p.id === product.id);
 e.stopPropagation();
 if(!user) return alert("please") 
   dispatch((saveProductsThunk(product)))
-  alert("saved")
+  toast.success("save")
  }
 
   return (

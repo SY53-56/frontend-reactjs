@@ -9,12 +9,11 @@ export default function ShowProducts() {
   const dispatch = useDispatch()
   const {id} = useParams()
   const {handleAddToCart} = UseProductAction()
-   const {product , products , loading} = useSelector(state=> state.product)
-   console.log(  'sahul',product)
-    console.log(products)
+   const {product  , loading} = useSelector(state=> state.product)
+ 
     useEffect(()=>{
       dispatch(singleProduct(id))
-    },[dispatch ])
+    },[dispatch, id ])
 
   return (
     <section className="min-h-screen bg-gray-50 py-16 px-6 md:px-20">

@@ -16,11 +16,13 @@ import SaveProduct from './pages/SaveProduct'
 import { ScrollTop } from './components/ScrollTop'
 import SearchPage from './pages/SearchPage'
 import CustomerService from './pages/CustomerService'
+import { Toaster } from 'react-hot-toast'
 
 function App() {
   
   return (
     <>
+    <Toaster  position="top-right" reverseOrder={false}/>
      <ScrollTop/>
     <Routes>
      
