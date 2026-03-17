@@ -18,8 +18,8 @@ export default function Cart() {
     0
   );
   
-  const discountPrice = total/100*10
-    
+  const discountPrice = Math.round(total/100*20)
+  const finalPrice = Math.floor((total+10) -discountPrice)
   const handleIncreaseProduct= useCallback((item)=>{
   dispatch(increaseCartProduct({id:item.id}))
   },[dispatch])
@@ -108,7 +108,7 @@ export default function Cart() {
         </div>
         <div className="flex justify-between font-bold text-lg border-t pt-4">
           <span>Total</span>
-          <span>${(total + 10).toFixed(2) - discountPrice}</span>
+          <span>${finalPrice}</span>
         </div>
 
 <Button name="checkout" onClick={handleRemoveAllCart} className="bg-black text-white w-full py-2 mt-4 rounded-lg"/>
