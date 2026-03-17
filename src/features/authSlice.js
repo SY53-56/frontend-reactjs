@@ -5,7 +5,9 @@ const initialState = {
   user: JSON.parse(sessionStorage.getItem("user")) || null,
   saveProducts: JSON.parse(localStorage.getItem("saveProduct")) || [],
   loading: false,
-  error: null
+ error:null,
+  loginError: null,
+  signupError: null
 }
 
 const authSlice = createSlice({
@@ -27,11 +29,11 @@ const authSlice = createSlice({
       .addCase(loginThunk.fulfilled, (state, action) => {
         state.loading = false
         state.user = action.payload
-        state.error = null
+      
       })
       .addCase(loginThunk.rejected, (state, action) => {
         state.loading = false
-        state.error = action.payload
+        state.loginError = action.payload
       })
       .addCase(signupThunk.pending, state => {
         state.loading = true
@@ -39,11 +41,11 @@ const authSlice = createSlice({
       .addCase(signupThunk.fulfilled, (state, action) => {
         state.loading = false
         state.user = action.payload
-        state.error = null
+      
       })
       .addCase(signupThunk.rejected, (state, action) => {
         state.loading = false
-        state.error = action.payload
+        state.signupError = action.payload
       })
       .addCase(saveProductsThunk.pending, (state)=>{
         state.loading= true
@@ -51,7 +53,7 @@ const authSlice = createSlice({
       .addCase(saveProductsThunk.fulfilled, (state,action)=>{
         state.loading = false
         state.saveProducts = action.payload
-        state.error= null
+      
       })
       .addCase(saveProductsThunk.rejected, (state,action)=>{
           state.loading = false

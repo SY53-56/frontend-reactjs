@@ -12,7 +12,7 @@ export default function Login() {
   email:"",
   password:""
  })
-const {loading,error} = useSelector(state=> state.auth)
+const {loading,loginError} = useSelector(state=> state.auth)
 
  const handleOnClick = (e)=>{
      const {name  ,value} = e.target
@@ -21,15 +21,17 @@ const {loading,error} = useSelector(state=> state.auth)
 
 const handleForm = async (e) => {
   e.preventDefault();
-
+   console.log("loginn")
   try {
     await dispatch(loginThunk(form)).unwrap();
-    navigate("/");
+ 
+    navigate("/")
+ 
   } catch (error) {
     console.log(error);
   }
 };
-console.log(error)
+
 
   return (
     <div className="w-full h-screen bg-gradient-to-br from-cyan-500 to-blue-600 flex justify-center items-center px-4">
@@ -75,7 +77,7 @@ console.log(error)
             Sign up
           </Link>
         </p>
-        {error&& (<p>{error}</p>)}
+        {loginError&& (<p>{loginError}</p>)}
       </form>
     </div>
   )

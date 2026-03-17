@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { signupThunk } from "../features/authThunk"
 
 export default function Signup() {
-  const { loading, error } = useSelector(state => state.auth)
+  const { loading, signupError } = useSelector(state => state.auth)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -23,8 +23,11 @@ export default function Signup() {
 
   const handleForm = async e => {
     e.preventDefault()
-    await dispatch(signupThunk(form))
-    navigate("/")
+
+    const res= await dispatch(signupThunk(form))
+    if(signupThunk.fulfilled.match(res)){
+      navigate("/")
+    }
   }
 
   return (
@@ -66,8 +69,8 @@ export default function Signup() {
           label="Password"
         />
 
-        {error && (
-          <p className="text-red-500 text-sm text-center">{error}</p>
+        {signupError && (
+          <p className="text-red-500 text-sm text-center">{signupError}</p>
         )}
 
         <Button
