@@ -34,7 +34,7 @@ function App() {
       <Route path={`/products/:category`}  element={<CategoryProduct/>}/>
       <Route path={"/user/dashboard/:id"}  element={<DashBoard/>}/>
       <Route  path="/users/saveproduct/:id" element={<SaveProduct/>}/>
-      <Route path={`/product/search`} element={<SearchPage/>}/>
+      <Route path={`/product/search/:search`} element={<SearchPage/>}/>
       <Route path={`/customerService/:id`} element={<CustomerService/>}/>
     </Route>
 

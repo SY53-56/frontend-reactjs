@@ -8,7 +8,7 @@ import Input from "./Input";
 
 
 
-export default function Header({search, setSearchText}) {
+export default function Header({search, setSearchText , handleChange}) {
   const { user } = useSelector((state) => state.auth);
   const {cart} = useSelector(state=> state.cart)
   const dispatch = useDispatch();
@@ -35,14 +35,7 @@ export default function Header({search, setSearchText}) {
  },[location.pathname])
   
 
- const handleChange =(value)=>{
-  setSearchText(value)
-  if(value){
- navigate(`/product/search`)
-  }
-  
- 
- }
+
 
   return (
     <header className="w-full bg-slate-900 text-slate-100 border-b border-slate-800 sticky top-0 z-50">

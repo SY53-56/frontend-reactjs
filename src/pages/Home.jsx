@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { productsThunk } from "../features/productThunk";
 import Card from "../components/Card";
 import img from "../assets/Spring Sale Promotion - Made with PosterMyWall.jpg";
-import { Link } from "react-router";
+import { Link, useOutletContext } from "react-router";
+import Input from "../components/Input";
+import { SearchCheckIcon, SearchIcon } from "lucide-react";
 
 export default function Home() {
   const { products } = useSelector((state) => state.product);
-
+  const { searchText, handleChange } =useOutletContext()
 
   const dispatch = useDispatch();
 
@@ -48,6 +50,10 @@ export default function Home() {
 
       {/* Banner */}
 <div className="lg:px-24 px-10 py-10">
+  <div className="w-full mb-10 flex justify-center items-center border px-3.5  lg:hidden">
+    <Input className="w-full border-none outline-none" value={searchText} name="search" id="search" onChange={(e)=> handleChange(e.target.value)} placeHolder="search your product"/>
+   <SearchIcon size={28}/>
+  </div>
   <div className="relative w-full h-96 lg:h-[420px] rounded-xl overflow-hidden shadow-lg">
 
     <img
