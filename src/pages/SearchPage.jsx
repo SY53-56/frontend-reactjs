@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react'
 import { useSelector } from 'react-redux'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams, useNavigate, useOutletContext } from 'react-router-dom'
 import { debounce } from '../utilit/debounce'
 import Card from '../components/Card'
 import Input from '../components/Input'
@@ -10,7 +10,7 @@ export default function SearchPage() {
 
   const products = useSelector(state => state.product.products)
   const [searchData, setSearchData] = useState([])
-
+const {setSearchText } = useOutletContext()
   const { search } = useParams()
   const navigate = useNavigate()
 
@@ -20,6 +20,7 @@ export default function SearchPage() {
       navigate(`/product/search/${encodeURIComponent(value)}`)
     } else {
       navigate(`/`) // or stay empty
+      setSearchText("")
     }
   }
 
@@ -43,6 +44,7 @@ export default function SearchPage() {
 
     }, 500)
   , [])
+ 
 
   useEffect(() => {
     debouncedSearch(search, products)

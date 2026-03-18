@@ -8,14 +8,16 @@ import Input from "../components/Input";
 import { SearchCheckIcon, SearchIcon } from "lucide-react";
 
 export default function Home() {
-  const { products } = useSelector((state) => state.product);
+  const  products  = useSelector((state) => state.product.products);
   const { searchText, handleChange } =useOutletContext()
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(productsThunk());
-  }, [dispatch]);
+ useEffect(() => {
+  if (!products.length) {
+    dispatch(productsThunk())
+  }
+}, [dispatch, products.length])
 
   
   const photo = [
@@ -58,6 +60,7 @@ export default function Home() {
 
     <img
       src={img}
+      loading="lazy"
       alt="Spring Sale Banner"
       className="w-full h-full object-cover"
     />

@@ -47,8 +47,8 @@ export default function Header({search, setSearchText , handleChange}) {
 
         {/* Desktop Navigation */}
        <div className="w-[500px] hidden lg:flex items-center rounded-md border px-3">
-         <Input type="text"  className="w-full border-none outline-none" name="search" value={search} onChange={(e)=>handleChange(e.target.value)}  placeHolder="search product..."/>
-         <SearchIcon className="cursor-pointer"   size={28}/>
+         <Input type="text"  className="w-full border-none outline-none " name="search" value={search} onChange={(e)=>handleChange(e.target.value)}  placeHolder="search product..."/>
+         <SearchIcon className="cursor-pointer "   size={28}/>
        </div>
       
         {/* Desktop Right Section */}

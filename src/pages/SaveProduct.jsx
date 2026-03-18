@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import Card from '../components/Card'
 export default function SaveProduct() {
-  const {saveProducts} = useSelector(state => state.auth)
+  const saveProducts = useSelector(state => state.auth.saveProducts)
 
   return (
  <main>

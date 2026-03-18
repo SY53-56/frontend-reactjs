@@ -28,6 +28,7 @@ if(!user) return alert("please")
 
       <Link to={`/product/${product.id}`} className="relative">
         <img 
+        loading="lazy"
           className="w-72 h-52 p-3 hover:scale-105 transition-all duration-500 object-contain rounded-md"
           src={product?.images[0] || "https://via.placeholder.com/150"}
         />

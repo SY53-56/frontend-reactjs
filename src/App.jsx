@@ -3,21 +3,21 @@
 import { Router , Route, Routes} from 'react-router-dom'
 import './App.css'
 import Card from './components/Card'
-import Home from './pages/Home'
+import { lazy } from "react"
 import Layouts from './layouts'
-import Products from './pages/Products'
-import ShowProducts from './pages/ShowProducts'
-import Cart from './pages/Cart'
-import Login from './pages/login'
-import Signup from './pages/signup'
-import CategoryProduct from './pages/CategoryProduct'
-import DashBoard from './pages/DashBoard'
-import SaveProduct from './pages/SaveProduct'
 import { ScrollTop } from './components/ScrollTop'
-import SearchPage from './pages/SearchPage'
 import CustomerService from './pages/CustomerService'
 import { Toaster } from 'react-hot-toast'
-
+const Home = lazy(() => import("./pages/Home"))
+const CategoryProduct = lazy(()=> import("./pages/CategoryProduct"))
+const Login = lazy(()=> import("./pages/login"))
+const Signup = lazy(()=> import("./pages/signup"))
+const Cart = lazy(()=> import("./pages/Cart"))
+const SaveProduct = lazy(()=> import("./pages/SaveProduct"))
+const SearchPage = lazy(()=> import("./pages/SearchPage"))
+const DashBoard = lazy(()=> import("./pages/DashBoard"))
+const Products= lazy(()=> import("./pages/Products"))
+const ShowProducts = lazy(()=> import("./pages/ShowProducts"))
 function App() {
   
   return (
