@@ -12,7 +12,7 @@ export default function Home() {
   const { searchText, handleChange } =useOutletContext()
 
   const dispatch = useDispatch();
-
+ 
  useEffect(() => {
   if (!products.length) {
     dispatch(productsThunk())
@@ -98,6 +98,7 @@ export default function Home() {
                 <img
                   src={item.img}
                   alt={item.name}
+                   loading="lazy"
                   className="w-28 h-28 object-cover rounded-full mb-3 group-hover:scale-110 transition"
                 />
 

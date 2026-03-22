@@ -1,5 +1,5 @@
  import { Link } from "react-router";
-
+import {memo} from "react"
  import { StarIcon } from "lucide-react";
  import Button from "./Button";
 
@@ -7,10 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { saveProductsThunk } from "../features/authThunk";
 import UseProductAction from "../hooks/UseProductAction";
 import toast from "react-hot-toast";
- function Card({ product   }) {
-  const dispatch = useDispatch()
+
+const Card = memo(({product})=>{
+const dispatch = useDispatch()
   const { saveProducts , user}= useSelector(state=> state.auth)
   const {handleAddToCart} = UseProductAction()
+
   const star = Math.floor(product?.rating || 0);
 
 const isSave = saveProducts.some(p => p.id === product.id);
@@ -18,7 +20,7 @@ const isSave = saveProducts.some(p => p.id === product.id);
  const handleData= (e)=>{
    e.preventDefault(); 
 e.stopPropagation();
-if(!user) return alert("please") 
+if (!user) return toast.error("Please login first"); 
   dispatch((saveProductsThunk(product)))
   toast.success("save")
  }
@@ -60,6 +62,7 @@ if(!user) return alert("please")
       </div>
     </div>
   );
-}
+})
+
 
 export default Card
