@@ -69,7 +69,7 @@ export default function CategoryProduct() {
           {loading ? (
             <p className="text-2xl text-center font-bold">Loading...</p>
           ) : category.length > 0 ? (
-            category.map((item) => (
+            category.slice(0, 9).map((item) => (
               <Card key={item.id} product={item} />
             ))
           ) : (

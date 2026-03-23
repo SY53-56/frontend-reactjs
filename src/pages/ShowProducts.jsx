@@ -21,11 +21,15 @@ export default function ShowProducts() {
         <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-lg p-8 grid md:grid-cols-2 gap-10 items-center">
         {/* Product Image */}
         <div className="w-full bg-gray-100 rounded-2xl p-6 flex justify-center items-center">
-          <img
-            className="max-h-[450px] object-contain rounded-xl"
-            src={ product.images ||`https://images.unsplash.com/photo-1713470599405-3ca0ae1363f8?q=80&w=1074&auto=format&fit=crop`}
-            alt="Product"
-          />
+        <img
+  loading="lazy"
+  decoding="async"
+  width="500"
+  height="450"
+  className="max-h-[450px] object-contain rounded-xl"
+  src={(product?.thumbnail || product?.images) + "?w=500"}
+  alt={product.title}
+/>
         </div>
 
         {/* Product Details */}
@@ -51,7 +55,7 @@ export default function ShowProducts() {
             <Button
               className="px-6 py-3 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white"
               name="Add to Cart"
-              onClick={handleAddToCart(product)}
+              onClick={()=>handleAddToCart(product)}
             />
 
             <Button

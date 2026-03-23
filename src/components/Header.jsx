@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate  } from "react-router-dom";
 import { ShoppingCartIcon, MenuIcon, X, LayoutDashboardIcon, MessageCircleCodeIcon, MoreVertical, PhoneCallIcon, HistoryIcon, SaveAllIcon, SearchAlertIcon, SearchIcon } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../features/authSlice";
 import Button from "./Button";
 import Input from "./Input";
+import toast from "react-hot-toast";
 
 
 
 export default function Header({search, setSearchText , handleChange}) {
   const { user } = useSelector((state) => state.auth);
-  const {cart} = useSelector(state=> state.cart)
+  const cart = useSelector(state=> state.cart.cart)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation()
@@ -21,8 +22,13 @@ export default function Header({search, setSearchText , handleChange}) {
     navigate("/");
   };
 
-
-   
+const cartNavigate = useCallback(() => {
+  if (cart.length === 0) {
+    toast.error("There are no products");
+  } else {
+    navigate(`/user/${user?.id}`);
+  }
+}, [cart, user, navigate]);
   const handleBox= ()=>{
     setShowBox(prev=> !prev)
   }
@@ -57,7 +63,15 @@ export default function Header({search, setSearchText , handleChange}) {
 
           {user ? (
             <div className="flex items-center justify-center gap-4">
-              <Link to={`/user/${user?.id}`}>          <ShoppingCartIcon className="cursor-pointer relative text-slate-300 hover:text-emerald-400 transition-colors" /><span className="absolute top-2 text-white rounded-full right-66">{cart.length}</span></Link>
+            
+<button className="cursor-pointer" onClick={cartNavigate}>
+  <div className="relative">
+    <ShoppingCartIcon className="text-slate-300 hover:text-emerald-400" />
+    <span className="absolute -top-2 -right-2 text-xs bg-red-500 text-white rounded-full px-1">
+      {cart.length}
+    </span>
+  </div>
+</button>
     <div className="rounded-full bg-white shadow-2xl px-3">
                 <span className=" text-3xl   text-center  text-emerald-500 font-medium">{user.username.charAt(0)}</span>
     </div>

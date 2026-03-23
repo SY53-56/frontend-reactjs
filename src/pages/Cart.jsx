@@ -1,4 +1,4 @@
-import React ,{useCallback}from "react";
+import React ,{useCallback, useMemo}from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   increaseCartProduct,
@@ -12,12 +12,14 @@ import toast from "react-hot-toast";
 export default function Cart() {
   const dispatch = useDispatch();
   const cart = useSelector(state => state.cart.cart);
-
-  const total = cart.reduce(
+console.log(cart)
+  const total = useMemo(()=>{
+   return cart.reduce(
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-  
+  },[cart])
+  console.log("totals",total)
   const discountPrice = Math.round(total/100*20)
   const finalPrice = Math.floor((total+10) -discountPrice)
   const handleIncreaseProduct= useCallback((item)=>{
@@ -35,9 +37,8 @@ export default function Cart() {
     },[dispatch])
 
   const handleRemoveAllCart = () => {
-  dispatch(removeAllcart([]));
+  dispatch(removeAllcart());
   toast.success("cheakout successfully")
-
 };
   return (
     <section className="w-full flex flex-col lg:flex-row gap-10 px-6 py-5 lg:px-20 mt-10">

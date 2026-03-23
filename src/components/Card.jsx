@@ -31,8 +31,11 @@ if (!user) return toast.error("Please login first");
       <Link to={`/product/${product.id}`} className="relative">
         <img 
         loading="lazy"
+        decoding="async"
+          width="288"
+  height="208"
           className="w-72 h-52 p-3 hover:scale-105 transition-all duration-500 object-contain rounded-md"
-          src={product?.images[0] || "https://via.placeholder.com/150"}
+       src={(product?.thumbnail || product?.images[0]) + "?w=300"}
         />
         <Button onClick={handleData} className="px-2 py-1 bg-gray-300 cursor-pointer rounded-lg absolute top-3 right-2 " name={isSave?"saved":"save"}/>
       </Link>
