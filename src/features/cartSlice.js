@@ -1,8 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const getInitialCart = () => {
+  try {
+    return JSON.parse(localStorage.getItem("cart")) || [];
+  } catch {
+    return [];
+  }
+};
+
 const initialState = {
-  cart: JSON.parse(localStorage.getItem("cart")) || [],
-  loading: false,
+  cart:   getInitialCart() ,
+    loading: false,
   error: null
 };
 
@@ -31,7 +39,7 @@ const cartSlice = createSlice({
         });
       }
 
-      localStorage.setItem("cart", JSON.stringify(state.cart));
+     
     },
     
     // ✅ REMOVE PRODUCT COMPLETELY
@@ -40,7 +48,7 @@ const cartSlice = createSlice({
 
       state.cart = state.cart.filter(item => item.id !== id);
 
-     localStorage.setItem("cart", JSON.stringify(state.cart));
+
     },
 
     // ✅ INCREASE QUANTITY
@@ -53,7 +61,7 @@ const cartSlice = createSlice({
         product.quantity += 1;
       }
 
-      localStorage.setItem("cart", JSON.stringify(state.cart));
+
     },
 
     // ✅ DECREASE QUANTITY
@@ -70,13 +78,11 @@ const cartSlice = createSlice({
         }
       }
 
-      localStorage.setItem("cart", JSON.stringify(state.cart));
     }
     ,
     removeAllcart:(state )=>{
      
        state.cart = []
-      localStorage.removeItem("cart")
     }
 
   }

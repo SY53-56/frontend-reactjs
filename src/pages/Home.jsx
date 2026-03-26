@@ -10,7 +10,7 @@ import { SearchCheckIcon, SearchIcon } from "lucide-react";
 export default function Home() {
   const  products  = useSelector((state) => state.product.products);
   const { searchText, handleChange } =useOutletContext()
-
+ const cart  = useSelector(state => state.cart.cart)
   const dispatch = useDispatch();
  
  useEffect(() => {
@@ -20,6 +20,9 @@ export default function Home() {
 }, [dispatch, products.length])
 
   
+ useEffect(()=>{
+ localStorage.setItem("cart", JSON.stringify(cart))
+ },[cart])
   const photo = [
     {
       name: "furniture",

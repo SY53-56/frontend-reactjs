@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { memo } from 'react'
 
-export default function Input({value , onChange , className,  label, placeHolder , type="text",name}) {
+ function Input({value , onChange , className,  label, placeHolder , type="text",name}) {
   return (
     <div className={`${className} flex flex-col gap-1`}>
         <label className='text-[18px] font-bold ' htmlFor="input">{label}</label>
@@ -8,3 +8,5 @@ export default function Input({value , onChange , className,  label, placeHolder
     </div>
   )
 }
+
+export default memo(Input)

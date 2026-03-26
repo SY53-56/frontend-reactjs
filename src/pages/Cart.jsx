@@ -21,7 +21,9 @@ console.log(cart)
   },[cart])
   console.log("totals",total)
   const discountPrice = Math.round(total/100*20)
+  
   const finalPrice = Math.floor((total+10) -discountPrice)
+
   const handleIncreaseProduct= useCallback((item)=>{
   dispatch(increaseCartProduct({id:item.id}))
   },[dispatch])

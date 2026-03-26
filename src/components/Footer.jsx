@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { Link } from "react-router-dom";
 import { FacebookIcon, InstagramIcon, TwitchIcon } from "lucide-react"
 
-export default function Footer() {
+ function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300 pt-16 pb-8 px-6 md:px-20">
       
@@ -79,3 +79,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+export default memo(Footer)

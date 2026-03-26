@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate  } from "react-router-dom";
 import { ShoppingCartIcon, MenuIcon, X, LayoutDashboardIcon, MessageCircleCodeIcon, MoreVertical, PhoneCallIcon, HistoryIcon, SaveAllIcon, SearchAlertIcon, SearchIcon } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 
 
 
-export default function Header({search, setSearchText , handleChange}) {
+ function Header({search , handleChange}) {
   const { user } = useSelector((state) => state.auth);
   const cart = useSelector(state=> state.cart.cart)
   const dispatch = useDispatch();
@@ -154,3 +154,5 @@ const cartNavigate = useCallback(() => {
     </header>
   );
 }
+
+export default memo(Header)

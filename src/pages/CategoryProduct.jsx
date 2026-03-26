@@ -8,7 +8,7 @@ export default function CategoryProduct() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { category: urlCategory } = useParams();
-  const { category, loading } = useSelector((state) => state.product);
+  const { category, categoryLoading } = useSelector((state) => state.product);
 
   const categories = [
     "beauty",
@@ -66,7 +66,7 @@ export default function CategoryProduct() {
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {loading ? (
+          {categoryLoading ? (
             <p className="text-2xl text-center font-bold">Loading...</p>
           ) : category.length > 0 ? (
             category.slice(0, 9).map((item) => (
