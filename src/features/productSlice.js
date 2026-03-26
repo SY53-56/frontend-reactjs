@@ -3,10 +3,14 @@ import { categoryProduct, productsThunk, singleProduct } from "./productThunk";
 
 let initialState = {
     products: [],
-    loading: false,
-    error: null,
     product: {},
-    category:[]
+    category:[],
+    productsLoading: false,
+  productLoading: false,
+  categoryLoading: false,
+  productsError: null,
+  productError: null,
+  categoryError: null,
 };
 
 const productSlice = createSlice({
@@ -16,41 +20,41 @@ const productSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(productsThunk.pending, (state) => {
-                state.loading = true;
-                state.error = null;
+                state.productsLoading = true;
+                state.productsError = null;
             })
             .addCase(productsThunk.fulfilled, (state, action) => {
-                state.loading = false;
+                state.productsLoading = false;
                 state.products = action.payload
-                state.error = null;
+                
             })
             .addCase(productsThunk.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.payload;
+                state.productsLoading = false;
+                state.productsError = action.payload;
             })
             .addCase(singleProduct.pending,(state)=>{
-             state.loading = true
+             state.productLoading = true
             })
             .addCase(singleProduct.fulfilled, (state,action)=>{
-                state.loading = false
+                state.productLoading= false
                 state.product = action.payload
-                state.error = null
+                state.productError = null
             })
             .addCase(singleProduct.rejected, (state,action)=>{
-                state.loading = false
-                state.error =action.payload
+                state.productLoading = false
+                state.productError =action.payload
             })
             .addCase(categoryProduct.pending,(state)=>{
-                state.loading = true
-             state.error = null
+                state.categoryLoading = true
+             state.categoryError = null
             })
             .addCase(categoryProduct.fulfilled,(state ,action)=>{
-        state.loading = false
+        state.categoryLoading = false
         state.category= action.payload
             })
              .addCase(categoryProduct.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.payload;
+        state.categoryLoading = false;
+        state.categoryError = action.payload;
       });
     }
 

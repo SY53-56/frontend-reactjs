@@ -9,7 +9,7 @@ export default function ShowProducts() {
   const dispatch = useDispatch()
   const {id} = useParams()
   const {handleAddToCart} = UseProductAction()
-   const {product  , loading} = useSelector(state=> state.product)
+   const {product  ,productLoading} = useSelector(state=> state.product)
  
     useEffect(()=>{
       dispatch(singleProduct(id))
@@ -17,7 +17,7 @@ export default function ShowProducts() {
 
   return (
     <section className="min-h-screen bg-gray-50 py-16 px-6 md:px-20">
-      {loading ?(<p className="text-center text-5xl font-bold">Loading .....</p>):(
+      {productLoading ?(<p className="text-center text-5xl font-bold">Loading .....</p>):(
         <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-lg p-8 grid md:grid-cols-2 gap-10 items-center">
         {/* Product Image */}
         <div className="w-full bg-gray-100 rounded-2xl p-6 flex justify-center items-center">

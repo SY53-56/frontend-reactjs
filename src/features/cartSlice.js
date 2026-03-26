@@ -33,7 +33,7 @@ const cartSlice = createSlice({
 
       localStorage.setItem("cart", JSON.stringify(state.cart));
     },
-
+    
     // ✅ REMOVE PRODUCT COMPLETELY
     removeCart: (state, action) => {
       const { id } = action.payload;
