@@ -11,12 +11,14 @@ import toast from "react-hot-toast";
 
  function Header({search , handleChange}) {
   const { user } = useSelector((state) => state.auth);
+
   const cart = useSelector(state=> state.cart.cart)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation()
   const [show, setShow] = useState(false);
   const [showBox, setShowBox]=useState(false)
+
   const handleLogout = async () => {
     await dispatch(logout());
     navigate("/");
@@ -34,7 +36,8 @@ const cartNavigate = useCallback(() => {
   }
  useEffect(()=>{
   if(location.pathname){
-    setShowBox(false)
+    setShow(false)
+     setShowBox(false)
   }
   console.log("page navigate", location.pathname)
 
@@ -118,39 +121,91 @@ const cartNavigate = useCallback(() => {
 
       {/* Mobile Menu */}
       {show && (
-        <div className="lg:hidden bg-slate-900 border-t border-slate-800 px-6 py-6 space-y-6 text-slate-300">
-          <Link to="/" className="block hover:text-emerald-400">Home</Link>
-          <Link to="/products" className="block hover:text-emerald-400">Products</Link>
-          <Link to="/customer" className="flex items-center gap-2 hover:text-emerald-400">
-            <MessageCircleCodeIcon size={18} /> Customer Service
-          </Link>
-          <Link to="/dashboard" className="flex items-center gap-2 hover:text-emerald-400">
-            <LayoutDashboardIcon size={18} /> Dashboard
-          </Link>
+  <div className="fixed inset-0 z-100 flex w-full h-full">
+    
+    {/* Overlay */}
+    <div 
+      className="w-full bg-black/50"
+      onClick={() => setShow(false)}
+    />
 
-          {user ? (
-            <Button
+    {/* Drawer */}
+    <div className=" w-full bg-slate-900 h-full p-5 flex flex-col gap-6 animate-slide-in">
+      
+      {/* Close */}
+      <div className="flex justify-between items-center">
+        <h2 className="text-xl text-emerald-400 font-bold">jedo</h2>
+        <button onClick={() => setShow(false)}>
+          <X />
+        </button>
+      </div>
+
+      {/* Search */}
+      <div className="flex items-center border rounded px-2">
+        <input
+          type="text"
+          value={search}
+          onChange={(e) => handleChange(e.target.value)}
+          placeholder="Search..."
+          className="w-full bg-transparent outline-none p-2"
+        />
+        <SearchIcon size={18} />
+      </div>
+
+      {/* Links */}
+      <div className="flex flex-col gap-4 text-slate-300">
+        <Link to="/" onClick={() => setShow(false)}>Home</Link>
+        <Link to="/products" onClick={() => setShow(false)}>Products</Link>
+
+        {user && (
+          <>
+            <Link to={`/user/dashboard/${user?.id}`} onClick={() => setShow(false)}>
+              Dashboard
+            </Link>
+
+            <Link to={`/customerService/${user?.id}`} onClick={() => setShow(false)}>
+              Customer Service
+            </Link>
+          </>
+        )}
+      </div>
+
+      {/* Bottom Section */}
+      <div className="mt-auto">
+        {user ? (
+          <div className="flex flex-col gap-3">
+            <div className="flex items-center gap-3">
+              <div className="bg-white text-emerald-500 rounded-full w-10 h-10 flex items-center justify-center">
+                {user?.username?.charAt(0)}
+              </div>
+              <span>{user.username}</span>
+            </div>
+
+            <button
               onClick={handleLogout}
-              className="w-full rounded-xl bg-rose-600 hover:bg-rose-700 text-white"
+              className="bg-rose-600 py-2 rounded text-white"
             >
               Logout
-            </Button>
-          ) : (
-            <div className="flex flex-col gap-3">
-              <Link to="/login">
-                <Button className="w-full rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white">
-                  Login
-                </Button>
-              </Link>
-              <Link to="/signup">
-                <Button className="w-full rounded-xl border border-emerald-400 text-emerald-400 hover:bg-emerald-400 hover:text-slate-900">
-                  Signup
-                </Button>
-              </Link>
-            </div>
-          )}
-        </div>
-      )}
+            </button>
+          </div>
+        ) : (
+          <div className="flex flex-col gap-3">
+            <Link to="/login">
+              <button className="w-full bg-emerald-500 py-2 rounded text-white">
+                Login
+              </button>
+            </Link>
+            <Link to="/signup">
+              <button className="w-full border border-emerald-400 py-2 rounded text-emerald-400">
+                Signup
+              </button>
+            </Link>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+)}
     </header>
   );
 }
