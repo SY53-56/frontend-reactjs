@@ -1,16 +1,59 @@
-# React + Vite
+# 🚀 React E-Commerce Frontend (Fake API)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and responsive frontend e-commerce application built using React. This project focuses on UI/UX, state management, and performance optimization using mock API data.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📌 Features
 
-## React Compiler
+- 🛍 Product listing page
+- 🔍 Search functionality
+- 🛒 Cart system (add/remove items)
+- 💾 Save products (wishlist)
+- 📊 Dashboard UI
+- 🔄 Dynamic routing
+- 📱 Fully responsive (mobile + desktop)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🧰 Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React**
+- **Redux Toolkit**
+- **React Router DOM**
+- **Vite**
+- **SCSS / Tailwind (if used)**
+- **Fake API (Mock Data)**
+
+---
+
+## ⚡ Performance Optimizations
+
+- Lazy loading (code splitting)
+- Optimized component structure
+- Reduced bundle size
+- Improved initial load time
+
+---
+
+## 📂 Project Structure
+src/
+│
+├── components/ # Reusable UI components
+├── pages/ # All pages (Home, Cart, Dashboard, etc.)
+├── redux/ # Redux store & slices
+├── hooks/ # Custom hooks
+├── layouts/ # Layout components
+├── services/ # API calls (mock)
+└── styles/ # SCSS files
+
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+
